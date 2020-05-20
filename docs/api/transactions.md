@@ -43,7 +43,7 @@ Content-Type application/json
 
 **Request**:
 
-`GET` `/transaction/list`
+`GET` `/transaction/list/`
 
 Parameters:
 
@@ -73,7 +73,7 @@ Content-Type application/json
 
 **Request**:
 
-`GET` `/transaction/summary-by-account`
+`GET` `/transaction/summary-by-account/`
 
 Parameters:
 
@@ -97,7 +97,7 @@ Content-Type application/json
 
 **Request**:
 
-`GET` `/transaction/summary-by-category`
+`GET` `/transaction/summary-by-category/`
 
 Parameters:
 
