@@ -5,7 +5,7 @@ Supports creating and listing
 
 **Request**:
 
-`POST` `/users/`
+`POST` `/users/create`
 
 Parameters:
 
