@@ -5,7 +5,7 @@ Supports creating and listing
 
 **Request**:
 
-`POST` `/users/create`
+`POST` `/users/create/`
 
 Parameters:
 
@@ -38,7 +38,7 @@ Content-Type application/json
 
 **Request**:
 
-`GET` `/users/detail`
+`GET` `/users/detail/`
 
 Parameters:
 
