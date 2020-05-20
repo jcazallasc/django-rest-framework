@@ -12,14 +12,14 @@ You can find the api documentation in the docs folder
 docker-compose up
 ```
 
+# How to run tests
+```bash
+docker-compose run app sh -c "python manage.py test && flake8"
+```
+
 # How to run migrations
 ```bash
 docker-compose run app sh -c "python manage.py migrate"
-```
-
-# How to run tests
-```bash
-docker-compose run app sh -c "python manage.py test"
 ```
 
 # How to run commands inside the docuker container
