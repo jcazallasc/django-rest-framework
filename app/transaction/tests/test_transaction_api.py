@@ -143,14 +143,14 @@ class PrivateTransactionsApiTests(TestCase):
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(len(res.data), 2)
-        self.assertEqual(res.data[1]['account'], account1)
-        self.assertEqual(res.data[1]['balance'], str(float(2)))
-        self.assertEqual(res.data[1]['total_inflow'], str(float(1)))
-        self.assertEqual(res.data[1]['total_outflow'], str(float(1)))
-        self.assertEqual(res.data[0]['account'], account2)
-        self.assertEqual(res.data[0]['balance'], str(float(1)))
-        self.assertEqual(res.data[0]['total_inflow'], str(float(0)))
-        self.assertEqual(res.data[0]['total_outflow'], str(float(1)))
+        self.assertEqual(res.data[0]['account'], account1)
+        self.assertEqual(res.data[0]['balance'], '2.00')
+        self.assertEqual(res.data[0]['total_inflow'], '1.00')
+        self.assertEqual(res.data[0]['total_outflow'], '1.00')
+        self.assertEqual(res.data[1]['account'], account2)
+        self.assertEqual(res.data[1]['balance'], '1.00')
+        self.assertEqual(res.data[1]['total_inflow'], '0.00')
+        self.assertEqual(res.data[1]['total_outflow'], '1.00')
 
     def test_summary_by_category(self):
         """
