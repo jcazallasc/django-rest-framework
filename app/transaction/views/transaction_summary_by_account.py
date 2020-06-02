@@ -5,6 +5,7 @@ from rest_framework import generics
 
 from core.models import Transaction
 from core.views.base_auth import BaseAuthView
+from transaction.constants.transaction import TYPE_INFLOW, TYPE_OUTFLOW
 from transaction.serializers.transaction_by_account import \
     TransactionByAccountSerializer
 
@@ -34,14 +35,14 @@ class TransactionSummaryByAccountView(BaseAuthView, generics.ListAPIView):
                 balance=Sum('amount'),
                 total_inflow=Sum(
                     Case(
-                        When(type='inflow', then='amount'),
-                        When(type='outflow', then=Decimal('0.00')),
+                        When(type=TYPE_INFLOW, then='amount'),
+                        When(type=TYPE_OUTFLOW, then=Decimal('0.00')),
                     ),
                 ),
                 total_outflow=Sum(
                     Case(
-                        When(type='outflow', then='amount'),
-                        When(type='inflow', then=Decimal('0.00')),
+                        When(type=TYPE_OUTFLOW, then='amount'),
+                        When(type=TYPE_INFLOW, then=Decimal('0.00')),
                     ),
                 ),
             )
