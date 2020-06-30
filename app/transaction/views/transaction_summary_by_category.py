@@ -14,7 +14,17 @@ class TransactionSummaryByCategoryView(BaseAuthView, generics.ListAPIView):
 
     def get_queryset(self):
         """Return objects for the current authenticated user only"""
-        return self.queryset.filter(
+        queryset = self.queryset
+
+        _from = self.request.query_params.get('from')
+        if _from:
+            queryset = queryset.filter(date__gte=_from)
+
+        _to = self.request.query_params.get('to')
+        if _to:
+            queryset = queryset.filter(date__lte=_to)
+
+        return queryset.filter(
             user=self.request.user
         ).order_by('-reference')
 

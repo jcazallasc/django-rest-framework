@@ -5,11 +5,29 @@ from core.models import Transaction
 from transaction.constants.transaction import VALID_TYPES
 
 
+class TransactionListSerializer(serializers.ListSerializer, list):
+    def validate(self, items):
+        reference_unique_list = list()
+        validated_data = list()
+
+        for item in items:
+            if item['reference'] not in reference_unique_list:
+                reference_unique_list.append(item['reference'])
+                validated_data.append(item)
+
+        return validated_data
+
+    def create(self, validated_data):
+        transactions = [Transaction(**item) for item in validated_data]
+        return Transaction.objects.bulk_create(transactions)
+
+
 class TransactionSerializer(serializers.ModelSerializer):
     """Serializer for transaction objects"""
 
     class Meta:
         model = Transaction
+        list_serializer_class = TransactionListSerializer
         fields = ('reference', 'account', 'date', 'amount', 'type', 'category')
 
     def validate(self, data):
